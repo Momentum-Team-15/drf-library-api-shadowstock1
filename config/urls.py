@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from LibraryApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('accounts/', include('registration.backends.default.urls')),
+    path('books/', views.BookList.as_view(), name='book_list'),
+    path('', views.home, name='home'),
 ]

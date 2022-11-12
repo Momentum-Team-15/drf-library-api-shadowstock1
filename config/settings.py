@@ -145,8 +145,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.IsAdminUser',
     ]
 }
 
 AUTH_USER_MODEL = 'LibraryApp.User'
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:8000'
+]
+
+CSRF_COOKIE_SECURE=True
+SESSION_COOKIE_SECURE=True
