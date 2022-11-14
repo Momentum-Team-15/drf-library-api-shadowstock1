@@ -16,11 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from LibraryApp import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('accounts/', include('registration.backends.default.urls')),
     path('books/', views.BookList.as_view(), name='book_list'),
+    path('books/<int:pk>/', views.BookDetail.as_view(), name='book_detail'),
+    path('tracking/', views.TrackerList.as_view(), name='track_list'),
+    path('tracking/<int:pk>', views.TrackerDetail.as_view(), name='track-detail'),
+    path('notes/', views.NotesList.as_view(), name='notes_list'),
+    path('notes/<int:pk>', views.NotesDetail.as_view(), name='note-detail'),
     path('', views.home, name='home'),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'html'])
